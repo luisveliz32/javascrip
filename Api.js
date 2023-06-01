@@ -1,29 +1,48 @@
-import React,{useEffect, useState} from 'react';
-import { FlatList, View, StyleSheet,Text, TextInput } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 
 const Api = () => {
-    const OptenerMovies= async () => {
-        try {
-            const response=await fetch('https://reactnative.dev/movies.json');
-            const movies=await response.json();
-            console.log(movies.movies);
-        } catch (error) {
-            console.error(error);
-        }
+ const[carga,setcargar]=useState(true);
+  const [data, setData] = useState([]);
+
+  const getMovies = async () => {
+    try {
+      const response = await fetch('https://reactnative.dev/movies.json');
+      const json = await response.json();
+      console.log(json.movies);
+      setData(json.movies);
+      
+    } catch (error) {
+      console.error(error);
+    }finally{
+      setcargar(false);
+      
     }
-    useEffect(()=>{
-        OptenerMovies();
-    },[]);
-    
+  };
+
+  useEffect(() => {
+    getMovies();
+    console.log(data);
+  }, []);
+
   return (
-    <View >
-        
+    <View style={{flex: 1, padding: 24}}>
+      {carga ?(<ActivityIndicator/>):(
+        <FlatList
+        data={data}
+        keyExtractor={({id}) => id}
+        renderItem={({item}) => (
+            <Text>
+            {item.title}, {item.releaseYear}
+            </Text>
+        )}
+        />
 
-        <Text>
-            holaaaaaa
-        </Text>
+      )
 
-
+      }
+      
+      
     </View>
   );
 };
