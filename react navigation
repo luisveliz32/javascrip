@@ -2,3 +2,4 @@ npm install @react-navigation/native @react-navigation/native-stack
 npm install react-native-screens react-native-safe-area-context
 https://reactnative.dev/img/tiny_logo.png
 4 npm install @react-navigation/drawer
+5 npm install react-native-gesture-handler react-native-reanimated
