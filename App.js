@@ -2,7 +2,7 @@ import  React ,{useState,useEffect} from 'react';
 import { Button, View, Text,Image, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Principal from './components/Principal';
+//import Principal from './components/Principal';
 
 function Principal({navigation}){
   const[cont,setcont]=useState(0);
@@ -63,5 +63,4 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
 
